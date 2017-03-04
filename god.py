@@ -1,5 +1,6 @@
 class God(object):
     def __init__(self, numberOfPersons, ratioPersonsDrivers, ratioUberCabs, cycles):
+        #here it will initialize everthing
         self._numberOfPersons = numberOfPersons
         self._ratioPersonsDrivers = ratioPersonsDrivers
         self._ratioUberCabs = ratioUberCabs
@@ -7,11 +8,13 @@ class God(object):
         self._next_event = 0;
 
         self._eventSelector = {
-            0: None,
-            1: None,
+            0: None, #Neutral
+            1: None, #Ask for driver
+            2: None, #Asign Driver
+            3: None, #Enter Driver
+            4: None, #Leave Driver
+            5: None, #Finish simulation
         }
-
-        #init everthing
 
     def startEverything(self):
         numberOfUbers = self._numberOfPersons/self._ratioPersonsDrivers*self._ratioUberCabs
