@@ -6,6 +6,11 @@ class God(object):
         self._cycles = cycles
         self._next_event = 0;
 
+        self._eventSelector = {
+            0: None,
+            1: None,
+        }
+
         #init everthing
 
     def startEverything(self):
