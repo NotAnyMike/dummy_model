@@ -27,15 +27,15 @@ class God(object):
             p = Person()
             persons.append(p)
 
-        for n in range(numberOfUbers):
+        for n in range(self._numberOfUbers):
             u = UberDriver()
             ubers.append(u)
 
-        for n in range(numberOfCabs):
+        for n in range(self._numberOfCabs):
             c = CabDriver()
             cabs.append(c)
 
-        while next_event != 5:
+        while self._next_event != 5:
             #run next event
             #update stats
             #get next event
