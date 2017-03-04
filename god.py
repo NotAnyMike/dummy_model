@@ -35,7 +35,7 @@ class God(object):
             c = CabDriver()
             cabs.append(c)
 
-        while next_event != 5:
+        while next_event != 8:
             #run next event
             #update stats
             #get next event
