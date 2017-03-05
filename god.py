@@ -1,13 +1,18 @@
 class God(object):
-    def __init__(self, numberOfPersons, ratioPersonsDrivers, ratioUberCabs, cycles):
-        #here it will initialize everthing
+    def __init__(self, numberOfPersons, ratioPersonsDrivers, ratioUberCabs, max_time):
+        #init everything
         self._numberOfPersons = numberOfPersons
         self._ratioPersonsDrivers = ratioPersonsDrivers
         self._ratioUberCabs = ratioUberCabs
-        self._cycles = cycles
-        self._next_event = 0;
+        self._max_time = max_time
 
-        #init everthing
+        self._time_next_events = [max_time]*9
+        self._type_of_closest_event = 0;
+        self._sim_time = 0
+
+        #give a value to the ask driver event to let everything start
+        #TODO: Change to a real random number
+        self._time_next_events[1] = 0.1
         
     #Event 1
     def _ask_driver(self):
@@ -52,16 +57,23 @@ class God(object):
         #1. Create time for event of type 3 with t=sim_time
         #2. Add driver to list of free drivers
         pass
+
+    #This function will make _type_of_closest_event have the value of the closes event
+    def _timer(self):
+        self._type_of_closest_event = self._max_time + 1
+        for i in range(7):
+            if self._time_next_events[i+1] < self._type_of_closest_event:
+                self._type_of_closest_event = self._time_next_events[i+1]     
     
     self._eventSelector = {
         0: None, #Neutral
-        1: None, #Ask for driver
-        2: None, #Search for driver
-        3: None, #Asign Driver
-        4: None, #Driver arrives at initial point
-        5: None, #Person Takes driver 
-        6: None, #Driver arrives at destination 
-        7: None, #Driver is free
+        1: _ask_driver, #Ask for driver
+        2: _search_driver, #Search for driver
+        3: _asign_driver, #Asign Driver
+        4: _driver_arrives_at_initial_point, #Driver arrives at initial point
+        5: _person_takes_driver, #Person Takes driver 
+        6: _arrives_at_destination, #Driver arrives at destination 
+        7: _driver_is_free, #Driver is free
         8: None, #Finish simulation
     }
 
@@ -84,8 +96,11 @@ class God(object):
             c = CabDriver()
             cabs.append(c)
 
-        while next_event != 8:
-            #run next event
-            #update stats
+        while self._type_of_closest_event != 8:
             #get next event
-            pass
+            _timer()
+
+            #Run closes event
+            self._eventSelector[self._type_of_closest_event]()
+
+            #update stats      
