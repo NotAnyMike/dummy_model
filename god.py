@@ -9,21 +9,60 @@ class God(object):
 
         #init everthing
         
-    def _ask_uber(self):
-        #1. add Person to a list of watingListOfPersons
-        #2. if are Drivers free then
-        #2.1 if are Drivers free in less then 5km and are Uber or/and Taxis
-        #2.2 create an event of type 2 for the same time of simulation
+    #Event 1
+    def _ask_driver(self):
+        #1. add Person to a FIFO list of watingListOfPersons
+        #2. Create the event of type 2, its time should be sim_time (actual time)
         #3. Create the next event of this type (1)
+        pass
+
+    #Event 2
+    def _search_driver(self):
+        #1. get list of drivers which match the filters
+        #2. if empty do nothing
+        #3. else: get the closes driver to it and asign it
+        #4. Create time of event of type 3 with t=sim_time
+        pass
+
+    #Event 3
+    def _asign_driver(self):
+        #1. Remove driver from list of free drivers
+        #2. Create the event for the next event of type 4 base on coordinates (i.e. time)
+        pass
+
+    #Event 4
+    def _driver_arrives_at_initial_point(self):
+        # this method is just in order to update statics (?)
+        #1. Create the event of type 5 for the same time as sim_time
+        pass
+
+    #Event 5
+    def _person_takes_driver(self):
+        #1. Create the event of type 6 based on coordinates
+        pass
+
+    #Event 6
+    def _arrives_at_destination(self):
+        #1. Create the event of type 7 with t=sim_time
+        #2. And desactivate person
+        pass
+
+    #Event 7
+    def _driver_is_free(self):
+        #1. Create time for event of type 3 with t=sim_time
+        #2. Add driver to list of free drivers
         pass
     
     self._eventSelector = {
         0: None, #Neutral
         1: None, #Ask for driver
-        2: None, #Asign Driver
-        3: None, #Enter Driver
-        4: None, #Leave Driver
-        5: None, #Finish simulation
+        2: None, #Search for driver
+        3: None, #Asign Driver
+        4: None, #Driver arrives at initial point
+        5: None, #Person Takes driver 
+        6: None, #Driver arrives at destination 
+        7: None, #Driver is free
+        8: None, #Finish simulation
     }
 
     def startEverything(self):
