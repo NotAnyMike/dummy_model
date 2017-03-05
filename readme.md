@@ -7,5 +7,5 @@ to run, just run it on python `python main.py`
 1. Ask for Driver
 2. Asign Driver
 3. Enter Driver
-4. Leave Driver
+4. Driver Free (or leave the cab or car)
 5. Finish
