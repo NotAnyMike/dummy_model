@@ -1,5 +1,6 @@
 class God(object):
     def __init__(self, numberOfPersons, ratioPersonsDrivers, ratioUberCabs, cycles):
+        #here it will initialize everthing
         self._numberOfPersons = numberOfPersons
         self._ratioPersonsDrivers = ratioPersonsDrivers
         self._ratioUberCabs = ratioUberCabs
@@ -15,6 +16,15 @@ class God(object):
         #2.2 create an event of type 2 for the same time of simulation
         #3. Create the next event of this type (1)
         pass
+    
+    self._eventSelector = {
+        0: None, #Neutral
+        1: None, #Ask for driver
+        2: None, #Asign Driver
+        3: None, #Enter Driver
+        4: None, #Leave Driver
+        5: None, #Finish simulation
+    }
 
     def startEverything(self):
         numberOfUbers = self._numberOfPersons/self._ratioPersonsDrivers*self._ratioUberCabs
@@ -27,11 +37,11 @@ class God(object):
             p = Person()
             persons.append(p)
 
-        for n in range(numberOfUbers):
+        for n in range(self._numberOfUbers):
             u = UberDriver()
             ubers.append(u)
 
-        for n in range(numberOfCabs):
+        for n in range(self._numberOfCabs):
             c = CabDriver()
             cabs.append(c)
 

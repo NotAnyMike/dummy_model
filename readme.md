@@ -1,13 +1,14 @@
 # This is the readme file
 
-to run, just run it on python
+to run, just run it on python `python main.py`
 
-#How to asign a Drive
-1. add Person to a list of watingListOfPersons
-2. if are Drivers free then
-	1. if are Drivers free in less then 5km and are Uber or/and Taxis
-	2. create an event of type 2 for the same time of simulation
-3. Do nothing
+## The types of events are:
+0. Neutral
+1. Ask for Driver
+2. Asign Driver
+3. Enter Driver
+4. Driver Free (or leave the cab or car)
+5. Finish
 
 #Filters to asign a driver
 * Between 5km 
