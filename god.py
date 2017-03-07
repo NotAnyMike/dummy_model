@@ -1,9 +1,11 @@
+from person import Person 
+
 class God(object):
-    def __init__(self, numberOfPersons, ratioPersonsDrivers, ratioUberCabs, max_time):
+    def __init__(self, number_of_persons, ratio_persons_drivers, ratio_uber_cabs, max_time):
         #init everything
-        self._numberOfPersons = numberOfPersons
-        self._ratioPersonsDrivers = ratioPersonsDrivers
-        self._ratioUberCabs = ratioUberCabs
+        self._number_of_persons = number_of_persons
+        self._ratio_persons_drivers = ratio_persons_drivers
+        self._ratio_uber_cabs = ratio_uber_cabs
         self._max_time = max_time
 
         self._time_next_events = [max_time]*9
@@ -11,8 +13,25 @@ class God(object):
         self._sim_time = 0
 
         #give a value to the ask driver event to let everything start
-        #TODO: Change to a real random number
-        self._time_next_events[1] = 0.1
+        self._time_next_events[1] = self._sim_time
+
+        self._number_of_ubers = self._number_of_persons/self._ratio_persons_drivers*self._ratio_uber_cabs
+        self._number_of_cabs = number_of_ubers/self._ratio_uber_cabs
+        self._persons = []
+        self._ubers = []
+        self._cabs = []
+
+        for n in range(self._number_of_persons):
+            p = Person()
+            self._persons.append(p)
+
+        for n in range(self._number_of_ubers):
+            u = UberDriver()
+            self._ubers.append(u)
+
+        for n in range(self._number_of_cabs):
+            c = CabDriver()
+            self._cabs.append(c)
         
     #Event 1
     def _ask_driver(self):
@@ -78,27 +97,9 @@ class God(object):
     }
 
     def startEverything(self):
-        numberOfUbers = self._numberOfPersons/self._ratioPersonsDrivers*self._ratioUberCabs
-        numberOfCabs = numberOfUbers/self._ratioUberCabs
-        persons = []
-        ubers = []
-        cabs = []
-
-        for n in range(self._numberOfPersons):
-            p = Person()
-            persons.append(p)
-
-        for n in range(self._numberOfUbers):
-            u = UberDriver()
-            ubers.append(u)
-
-        for n in range(self._numberOfCabs):
-            c = CabDriver()
-            cabs.append(c)
-
         while self._type_of_closest_event != 8:
             #get next event
-            _timer()
+            self._timer()
 
             #Run closes event
             self._eventSelector[self._type_of_closest_event]()
